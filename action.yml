@@ -104,9 +104,9 @@ inputs:
       and to modify files (such as supplying build information to other scripts) before building.
     required: false
     default: "false"
-  cosign_verify_cli:
+  verify_install:
     description: |
-      Set to true verify the cosign signature for the Blue-Build cli
+      Set to true verify the cosign signature and provenance for the Blue-Build cli
     required: false
     default: "false"
 
@@ -170,7 +170,7 @@ runs:
         persist-credentials: false
 
     - name: Set container policy to validate Blue-Build cli signature
-      if: ${{ inputs.cosign_verify_cli == 'true' }}
+      if: ${{ inputs.verify_install == 'true' }}
       shell: bash
       run: |
         POLICY_FILE="/etc/containers/policy.json"
